@@ -5,7 +5,12 @@
     tools:context="com.example.laboratorio6.survey.SurveyFragment">
 
     <data>
-
+        <variable
+            name="surveyViewModel"
+            type="com.example.laboratorio6.survey.SurveyViewModel" />
+        <variable
+            name="resultsViewModel"
+            type="com.example.laboratorio6.results.ResultsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +21,7 @@
             android:id="@+id/questionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@{surveyViewModel.showQuestion}"
             app:layout_constraintBottom_toTopOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -27,12 +32,12 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/inputAnswer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/questionText"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@+id/questionText" />
 
         <EditText
             android:id="@+id/inputAnswer"
@@ -42,6 +47,7 @@
             android:hint="@string/your_answer"
             android:inputType="textPersonName"
             android:textAlignment="center"
+            android:text="@={resultsViewModel.inputAnswer}"
             app:layout_constraintBottom_toTopOf="@+id/nextQuestion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -17,4 +17,12 @@
     <string name="see_results">See Results</string>
     <string name="your_answer">Your Answer</string>
     <string name="next">Next</string>
+    <string name="about_text">El objetivo de esta aplicación es proveer de una encuesta de
+        satisfacción a un cliente que acaba de utilizar nuestros servicios. El app permite agregar
+        preguntas, realizar la encuesta, mostrar los resultados y luego dar la opción de repetir
+        la encuesta.</string>
+    <string name="about_image">about</string>
+    <string name="your_rate_4_5">Your Rate: 4.5</string>
+    <string name="your_result_4_5">Your Result: 4.5</string>
+    <string name="survey_number_1">Survey Number: 1</string>
 </resources>

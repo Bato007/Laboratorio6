@@ -5,7 +5,9 @@
     tools:context="com.example.laboratorio6.showResults.ShowResultsFragment">
 
     <data>
-
+        <variable
+            name="resultsViewModel"
+            type="com.example.laboratorio6.results.ResultsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +28,7 @@
                 android:id="@+id/surveyResults"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="@{resultsViewModel.answersString}"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </ScrollView>

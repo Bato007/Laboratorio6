@@ -5,11 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.laboratorio6.results.ResultsFragment">
 
+    <data>
+        <variable
+            name="surveyViewModel"
+            type="com.example.laboratorio6.survey.SurveyViewModel" />
+        <variable
+            name="resultsViewModel"
+            type="com.example.laboratorio6.results.ResultsViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/resultTitle"
@@ -29,7 +36,7 @@
             android:id="@+id/ratingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/survey_number_1"
             app:layout_constraintBottom_toTopOf="@+id/surveyNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +47,7 @@
             android:id="@+id/surveyNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/your_result_4_5"
             app:layout_constraintBottom_toTopOf="@+id/newSurvey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
