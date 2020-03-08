@@ -4,6 +4,7 @@ package com.example.laboratorio6.survey
 
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +46,7 @@ class SurveyFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.nextQuestion.setOnClickListener{view: View ->
-            if(surveyViewModel.getListSize() == surveyViewModel.getQuestionLeft()){
+            if(surveyViewModel.allQuestions.size == surveyViewModel.questionLeft){
                 surveyViewModel.restartQuestions()
                 view.findNavController().navigate(R.id.action_surveyFragment_to_resultsFragment)
             }else {
@@ -56,7 +57,15 @@ class SurveyFragment : Fragment() {
     }
 
     private fun updateQuestion(){
-        when(surveyViewModel.getQuestionType()){
+        surveyViewModel.nextQuestion()
+
+        if(binding.ratingBar.visibility == View.VISIBLE){
+            resultViewModel.add(binding.ratingBar.rating.toString())
+        }else{
+            resultViewModel.add(binding.inputAnswer.text.toString())
+        }
+
+        when(surveyViewModel.questionType){
             "Rating" -> {
                 binding.ratingBar.visibility = View.VISIBLE
                 binding.inputAnswer.visibility = View.GONE
@@ -64,10 +73,17 @@ class SurveyFragment : Fragment() {
             else -> {
                 binding.ratingBar.visibility = View.GONE
                 binding.inputAnswer.visibility = View.VISIBLE
+
+                // Cambiando a lo que puede ingresar el usuario
+                if (surveyViewModel.questionType == "Number"){
+                    binding.inputAnswer.inputType = InputType.TYPE_CLASS_NUMBER
+                }else{
+                    binding.inputAnswer.inputType = InputType.TYPE_CLASS_TEXT
+                }
+
             }
         }
-        surveyViewModel.nextQuestion()
-        resultViewModel.add()
+
         binding.ratingBar.rating = 0f
         binding.inputAnswer.text.clear()
     }

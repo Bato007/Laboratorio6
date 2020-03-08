@@ -4,15 +4,14 @@ package com.example.laboratorio6.results
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.laboratorio6.R
+import com.example.laboratorio6.dataBase.DataBaseSurvey
 import com.example.laboratorio6.databinding.ResultsFragmentBinding
 import com.example.laboratorio6.survey.SurveyViewModel
 
@@ -52,9 +51,20 @@ class ResultsFragment : Fragment() {
         }
 
         binding.lifecycleOwner = this
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+    // Inicializando el menu para poder guardar las cosas
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.data_base_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val dataBase = DataBaseSurvey(context!!)
+        dataBase.deleteData()
+        return super.onOptionsItemSelected(item)
+    }
 
 }

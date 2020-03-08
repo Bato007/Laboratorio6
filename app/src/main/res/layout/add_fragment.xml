@@ -4,16 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context="com.example.laboratorio6.addQuestion.AddFragment">
 
-    <data>
-        <variable
-            name="addViewModel"
-            type="com.example.laboratorio6.addQuestion.AddViewModel" />
-    </data>
-    
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/inputQuestion"
@@ -24,20 +18,48 @@
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/questionType"
+        <Button
+            android:id="@+id/textButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/numberButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/numberButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/scoreButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textButton" />
+
+        <Button
+            android:id="@+id/scoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/rate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputQuestion" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/numberButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

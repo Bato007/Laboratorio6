@@ -6,30 +6,31 @@ import androidx.lifecycle.ViewModel
 
 class ResultsViewModel: ViewModel() {
 
-    var inputAnswer = MutableLiveData<String>()
-
-    private val _results = MutableLiveData<String>()
-    val obtainedResults: LiveData<String>
+    private val _results = MutableLiveData<Float>()
+    val obtainedResults: LiveData<Float>
         get() = _results
 
-    private val _numberSurvey = MutableLiveData<String>()
-    val numberSurvey: LiveData<String>
+    private val _numberSurvey = MutableLiveData<Int>()
+    val numberSurvey: LiveData<Int>
         get() = _numberSurvey
 
     private val _answersString = MutableLiveData<String>()
     val answersString: LiveData<String>
         get() = _answersString
 
-    private var count: Int = 1
-
     private var answers: ArrayList<String> = ArrayList()
 
-    fun add(){
-        answers.add(inputAnswer.value.toString())
+    init {
+        _numberSurvey.value = 1
+        _results.value = 0F
+    }
+
+    fun add(inputAnswer: String){
+        answers.add(inputAnswer)
     }
 
     fun newSurvey(){
-        count++
+        _numberSurvey.value = (_numberSurvey.value)?.plus(1)
     }
 
     fun getAnswers(){
@@ -40,6 +41,5 @@ class ResultsViewModel: ViewModel() {
         }
 
         this._answersString.value = answers
-        this._numberSurvey.value = count.toString()
     }
 }

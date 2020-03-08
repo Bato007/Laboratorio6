@@ -1,12 +1,13 @@
 package com.example.laboratorio6.survey
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.laboratorio6.dataBase.DataBaseSurvey
+import com.example.laboratorio6.dataBase.Survey
 
 class SurveyViewModel: ViewModel() {
-
-    var newQuestion = MutableLiveData<String>()
 
     //Pregunta que se le mostrara al usuario
     private val _showQuestion = MutableLiveData<String>()
@@ -14,67 +15,41 @@ class SurveyViewModel: ViewModel() {
         get() = _showQuestion
 
     // Tipo de la pregunta
-    private  var questionType: String
+    var questionType: String
+    var questionLeft: Int = 1
 
-    private var questionLeft: Int = 1
-
-    // Las preguntas
-    private var questions: ArrayList<String> = ArrayList()
-    private var questionsType: ArrayList<String> = ArrayList()
+    //Tipo
+    var newType: String = "Text"
 
     // Las que no se borran
-    private var allQuestions: ArrayList<String> = ArrayList()
-    private var allTypes: ArrayList<String> = ArrayList()
+    var allQuestions: ArrayList<String> = arrayListOf("Do you have any Comments or Suggestions?", "How was our Service?")
+    var allTypes: ArrayList<String> = arrayListOf("Text", "Rating")
 
     init {
-        // Questions
-        questions.add("Do you have any Comments or Suggestions?")
-        questions.add("How was our Service?")
-        allQuestions.add("Do you have any Comments or Suggestions?")
-        allQuestions.add("How was our Service?")
-
-        // Type
-        questionsType.add("Text")
-        questionsType.add("Rating")
-
-        allTypes.add("Text")
-        allTypes.add("Rating")
-
-        questionType = questionsType[questionsType.size - 1]
-        _showQuestion.value = questions[questions.size - 1]
+        questionType = allTypes[questionLeft - 1]
+        _showQuestion.value = allQuestions[questionLeft - 1]
     }
 
-    fun updateQuestions(){
-        questions.clear()
-        questionsType.clear()
-        questions = allQuestions
-        questionsType = allTypes
-    }
+    fun addQuesiton(context: Context?, newQuestion:String){
+        allQuestions.add(0, newQuestion)
+        allTypes.add(0, newType)
 
-    fun addQuesiton(type: String){
-        allQuestions.add(newQuestion.value.toString())
-        allTypes.add(type)
+        // Metiendolo a la base de datos
+        val survey = Survey(newQuestion, newType, "")
+        val dataBase = DataBaseSurvey(context!!)
+        dataBase.insertData(survey)
+
+        newType = "Text"
     }
 
     fun nextQuestion(){
-        _showQuestion.value = questions[this.questionLeft - 1]
-        questionType = questionsType[this.questionLeft - 1]
         this.questionLeft++
+        _showQuestion.value = allQuestions[this.questionLeft - 1]
+        questionType = allTypes[this.questionLeft - 1]
     }
 
     fun restartQuestions(){
         this.questionLeft = 1
     }
 
-    fun getListSize(): Int{
-        return questions.size
-    }
-
-    fun getQuestionLeft(): Int{
-        return questionLeft
-    }
-
-    fun getQuestionType(): String{
-        return questionType
-    }
 }

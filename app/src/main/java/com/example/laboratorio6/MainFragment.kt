@@ -41,7 +41,6 @@ class MainFragment : Fragment() {
 
         // Cambiando a la encuesta
         binding.nextButt.setOnClickListener { view: View->
-            surveyViewModel.updateQuestions()
             surveyViewModel.restartQuestions()
             view.findNavController().navigate(R.id.action_mainFragment_to_surveyFragment)
         }

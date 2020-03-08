@@ -25,4 +25,10 @@
     <string name="your_rate_4_5">Your Rate: 4.5</string>
     <string name="your_result_4_5">Your Result: 4.5</string>
     <string name="survey_number_1">Survey Number: 1</string>
+    <string name="number">Number</string>
+    <string name="score">Score</string>
+    <string name="text">Text</string>
+    <string name="rate">Rating</string>
+    <string name="app_score">App Score</string>
+    <string name="number_of_surveys">Number of Surveys</string>
 </resources>

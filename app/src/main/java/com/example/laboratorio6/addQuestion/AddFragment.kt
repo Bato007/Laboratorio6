@@ -14,6 +14,7 @@ import com.example.laboratorio6.R
 import com.example.laboratorio6.databinding.AddFragmentBinding
 import com.example.laboratorio6.survey.SurveyViewModel
 
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -26,20 +27,25 @@ class AddFragment : Fragment() {
     // ViewModel
     private lateinit var surveyViewModel: SurveyViewModel
 
-    // Lista de opciones
-    private var type = arrayOf("Text", "Number", "Rating")
-
-    // ViewModels
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
         // Inicializando variables
         binding = DataBindingUtil.inflate(inflater, R.layout.add_fragment, container, false)
 
-        binding.questionType.adapter = ArrayAdapter<String>(this.activity!!, R.layout.support_simple_spinner_dropdown_item, type)
-
         surveyViewModel = ViewModelProviders.of(activity!!).get(SurveyViewModel::class.java)
+
+        binding.textButton.setOnClickListener {
+            surveyViewModel.newType = "Text"
+        }
+
+        binding.numberButton.setOnClickListener {
+            surveyViewModel.newType = "Number"
+        }
+
+        binding.scoreButton.setOnClickListener {
+            surveyViewModel.newType = "Rating"
+        }
 
         setHasOptionsMenu(true)
         return binding.root
@@ -52,9 +58,9 @@ class AddFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        surveyViewModel.addQuesiton(item.toString())
-        binding.inputQuestion.text.clear()
         view!!.findNavController().navigate(R.id.action_addFragment_to_mainFragment)
+        surveyViewModel.addQuesiton(activity!!, binding.inputQuestion.text.toString())
+        binding.inputQuestion.text.clear()
         return super.onOptionsItemSelected(item)
     }
 }

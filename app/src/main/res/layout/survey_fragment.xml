@@ -47,7 +47,6 @@
             android:hint="@string/your_answer"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            android:text="@={resultsViewModel.inputAnswer}"
             app:layout_constraintBottom_toTopOf="@+id/nextQuestion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
